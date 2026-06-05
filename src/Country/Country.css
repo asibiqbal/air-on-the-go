@@ -1,17 +1,119 @@
 .country-container {
-  border: 1px solid blueviolet;
-  border-radius: 10px;
-  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
 }
+
+.country-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.country-container:hover::before {
+  left: 100%;
+}
+
+.country-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(22, 199, 132, 0.2);
+  border-color: rgba(22, 199, 132, 0.3);
+}
+
+.country-visited {
+  background: rgba(22, 199, 132, 0.1);
+  border-color: rgba(22, 199, 132, 0.4);
+}
+
+.country-visited::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at top-right,
+    rgba(22, 199, 132, 0.1),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.country-not-visited {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 .country-img {
   width: 100%;
   height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
 }
-.country-visited {
-  background-color: aquamarine;
-  color: blueviolet;
+
+.country-container:hover .country-img {
+  transform: scale(1.05);
 }
-.country-not-visited {
-  background-color: rgb(33, 94, 73);
-  color: rgb(190, 164, 215);
+
+.country-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #16c784;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.country-official,
+.country-capital,
+.country-population,
+.country-region {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #b0b0b0;
+  line-height: 1.4;
+}
+
+.visit-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: 2px solid rgba(22, 199, 132, 0.5);
+  background: rgba(22, 199, 132, 0.15);
+  color: #16c784;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.visit-btn:hover {
+  background: rgba(22, 199, 132, 0.3);
+  border-color: rgba(22, 199, 132, 1);
+  box-shadow: 0 0 15px rgba(22, 199, 132, 0.4);
+  transform: scale(1.02);
+}
+
+.visit-btn:active {
+  transform: scale(0.98);
 }

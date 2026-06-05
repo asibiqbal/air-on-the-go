@@ -1,10 +1,238 @@
+.countries-main-container {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.rotating-bg {
+  position: fixed;
+  top: 50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(22, 199, 132, 0.3) 0%,
+    rgba(0, 212, 255, 0.1) 50%,
+    transparent 100%
+  );
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 100px rgba(22, 199, 132, 0.1);
+}
+
+.visited-section {
+  position: relative;
+  z-index: 1;
+  padding: 60px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 52, 96, 0.8) 0%,
+    rgba(26, 26, 46, 0.8) 100%
+  );
+  margin-bottom: 40px;
+  border-bottom: 2px solid rgba(22, 199, 132, 0.2);
+}
+
+.countries-section {
+  position: relative;
+  z-index: 1;
+  padding: 60px 20px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #16c784 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.visited-stats {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  display: inline-block;
+  background: rgba(22, 199, 132, 0.1);
+  border: 2px solid rgba(22, 199, 132, 0.4);
+  border-radius: 12px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #16c784;
+  box-shadow: 0 4px 15px rgba(22, 199, 132, 0.15);
+}
+
+.stat-box strong {
+  color: #00d4ff;
+  font-size: 1.5rem;
+}
+
+.visited-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(22, 199, 132, 0.2);
+  border-radius: 15px;
+  padding: 30px;
+  min-height: 200px;
+}
+
+.visited-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.visited-names h3,
+.visited-flags h3 {
+  color: #16c784;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(22, 199, 132, 0.3);
+}
+
+.visited-list {
+  list-style-position: inside;
+  color: #b0b0b0;
+}
+
+.visited-list li {
+  padding: 8px 0;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.visited-list li:hover {
+  color: #16c784;
+  padding-left: 10px;
+}
+
+.flags-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.flag-item {
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.flag-item img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid rgba(22, 199, 132, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.flag-item:hover img {
+  transform: scale(1.1);
+  border-color: rgba(22, 199, 132, 0.8);
+  box-shadow: 0 8px 20px rgba(22, 199, 132, 0.3);
+}
+
+.flag-item p {
+  font-size: 0.8rem;
+  color: #b0b0b0;
+  margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty-message {
+  text-align: center;
+  color: #8a8a8a;
+  font-size: 1.1rem;
+  padding: 40px;
+  font-style: italic;
+}
+
 .country-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
-.visited-country-flags img {
-  width: 180px;
-  height: 120px;
-  padding: 5px;
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .country-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visited-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .country-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .visited-section {
+    padding: 40px 15px;
+  }
+
+  .countries-section {
+    padding: 40px 15px;
+  }
+
+  .flags-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .country-wrapper {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .visited-list-container {
+    padding: 20px;
+  }
+
+  .visited-content {
+    gap: 25px;
+  }
+
+  .stat-box {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+
+  .flags-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 10px;
+  }
+
+  .flag-item img {
+    height: 60px;
+  }
 }
